@@ -2,51 +2,120 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Eu te amo 💖</title>
+  <title>Surpresa 💖</title>
   <style>
     body {
+      background: #ffe6f0;
       text-align: center;
-      margin-top: 100px;
-      font-family: Arial, sans-serif;
-      background-color: #fff;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
     }
 
     h1 {
-      color: red;
-      font-size: 28px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 18px;
-      background-color: #f28ad1;
-      border: none;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 20px;
+      margin-top: 50px;
+      color: #d63384;
     }
 
     #surpresa {
       display: none;
-      color: darkmagenta;
-      font-size: 24px;
-      margin-top: 30px;
+      margin-top: 20px;
+      font-size: 22px;
+      color: #6f42c1;
+    }
+
+    button {
+      margin-top: 40px;
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 2px 2px 10px #aaa;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: float 6s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    #music-message {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>Eu te amo 💖</h1>
 
-  <button onclick="document.getElementById('surpresa').style.display='block'">
-    Clique para uma surpresa 💌
-  </button>
+  <h1>Clica no botão abaixo 😊</h1>
 
-  <p id="surpresa">Você é a razão do meu sorriso todos os dias 🥰</p>
+  <button onclick="mostrarSurpresa()">Clique aqui 🎁</button>
 
-  <audio autoplay loop hidden>
-    <source src="https://dl.sndup.net/8xk5/Stuck%20With%20U%20-%20Ariana%20Grande%20%26%20Justin%20Bieber.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio embutido.
+  <div id="surpresa">"Você é mais especial do que imagina. Nunca se esqueça disso." 💖</div>
+
+  <div id="music-message">Se não ouvir a música, clique aqui 🎵</div>
+  <audio autoplay loop controls>
+    <source src="https://github.com/NickRei00/static-assets/raw/main/ariana-grande-justin-bieber-stuck-with-u.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
   </audio>
+
+  <script>
+    function mostrarSurpresa() {
+      document.getElementById("surpresa").style.display = "block";
+
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = window.innerHeight + 'px';
+        heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
+  </script>
+
 </body>
 </html>
